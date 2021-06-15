@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<script>
+	window.onload = function(){
+		let params = new URLSearchParams(document.location.search.substring(1));
+		let searchResult = params.get("q");
+		document.getElementById('title-fix').innerHTML = searchResult + " - Google Search";
+		for (i = 0; i < document.getElementsByTagName("em").length; i++) {
+			document.getElementsByTagName("em")[i].innerHTML = searchResult;
+		}
+		document.getElementById('q').value = searchResult;
+		var loadTime = window.performance.timing.domContentLoadedEventEnd- window.performance.timing.navigationStart;
+		document.getElementById('load-time').innerHTML = "("+loadTime/1000+" seconds)";
+	};
+</script>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">  
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="result_style.css">
+	<script src="function.js"></script>  
+	<title id="title-fix"></title>
+</head>
+
+<body>
+
+<div class="header"id="searchform">
+	<div class="no_style">
+		<span style="display:none"></span>
+		<div class="top-right">
+			<div class="buttons">
+				<div class="buttons-again">
+
+					<div class="nav-menu-4">
+						<div class="nav-menu-3">
+							<div class="nav-menu-2">
+								<a class="nav-menu-1">
+									<svg class="nav-menu" viewBox="0 0 24 24">
+										<path d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z">
+										</path>
+									</svg>
+								</a>
+							</div>
+						</div>
+					</div>
+				<a class="sign-in" href="https://accounts.google.com/ServiceLogin?hl=en">Sign in</a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="brightness-4">
+		<div class="brightness-3">
+			<div class="brightness-2">
+				<div class="invis-text">Change theme</div>
+				<div class="brightness-1">
+					<div class="brightness">
+						<span style="height:20px;line-height:20px;width:20px" class="button">
+							<svg enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24">
+								<rect fill="none" height="24" width="24"></rect>
+								<path d="M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0 c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2 c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1 C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06 c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41 l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41 c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36 c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path>
+							</svg>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<form class="all-the-left" action="result.html" method="GET" name="search-place"id="search-place"role="search"> 
+		<div class="left-divider">
+
+			<div class="logo">
+				<a href="index.html" id="logo">
+					<img src="img/google-logo-small.png" alt="Google" height="30" width="92" data-atf="1">
+				</a>
+			</div>
+
+			<div class="searchbar">
+				<div class="inner-left">
+					<div class="left-magnify">
+						<div class="left-magnify-inner">
+							<span class="left-magnify-svg">
+								<svg viewBox="0 0 24 24">
+									<path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+								</svg>
+							</span>
+
+						</div>
+					</div>
+					<div class="search-area">
+						<input class="actual-search-area" maxlength="2048" name="q" type="text" id="q" autocapitalize="off" autocomplete="off" autocorrect="off" role="combobox" spellcheck="false">
+					</div>
+
+					<div class="two-buttons">
+
+						<div class="clear-section" role="button" id="clear-section"> 
+							<span class="clear-button" role="button" onclick="Clear2()">
+								<svg focusable="false" viewBox="0 0 24 24">
+									<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+								</svg>
+							</span>
+							<span class="clear-mic-sep"></span> 
+						</div>
+						<div class="mic-section">
+							<svg class="mic-button" viewBox="0 0 24 24">
+								<path fill="#4285f4" d="m12 15c1.66 0 3-1.31 3-2.97v-7.02c0-1.66-1.34-3.01-3-3.01s-3 1.34-3 3.01v7.02c0 1.66 1.34 2.97 3 2.97z"></path>
+								<path fill="#34a853" d="m11 18.08h2v3.92h-2z"></path>
+								<path fill="#fbbc05" d="m7.05 16.87c-1.27-1.33-2.05-2.83-2.05-4.87h2c0 1.45 0.56 2.42 1.47 3.38v0.32l-1.15 1.18z"></path>
+								<path fill="#ea4335" d="m12 16.93a4.97 5.25 0 0 1 -3.54 -1.55l-1.41 1.49c1.26 1.34 3.02 2.13 4.95 2.13 3.87 0 6.99-2.92 6.99-7h-1.99c0 2.92-2.24 4.93-5 4.93z"></path>
+							</svg>
+						</div>
+					</div>
+
+				</div>
+				<button class="magnify-section" type="submit"> 
+					<div class="magnify-area">
+						<span class="magnify">
+							<svg focusable="false" viewBox="0 0 24 24">
+								<path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+							</svg>
+						</span>
+					</div>
+				</button>
+			</div>
+
+		</div>
+	</form>
+
+
+
+	<script>
+	$("#search-place :input").keydown(function() {
+		if (document.getElementById("q").value == '') {
+			document.getElementById("clear-section").style.display = "none";
+			}
+		else {
+			document.getElementById("clear-section").style.display = "block";
+			}
+	});
+
+	$("#search-place :input").keyup(function() {
+		if (document.getElementById("q").value == '') {
+			document.getElementById("clear-section").style.display = "none";
+			}
+		else {
+			document.getElementById("clear-section").style.display = "block";
+			}
+	});
+	</script>
+</div>
+
+<div class="main">
+	<div class="inner-main">
+		<div class="fake-search-area"></div>
+
+		<div class="nav-menu-search-bar">
+				<div class="nav-menu-inner">
+					<div class="nav-menu-more-inner">
+						<div class="nav-section">
+							<div>
+								<div class="left-nav">
+
+									<div class="all-nav-button">
+										<span class="all-nav-svg" style="height:16px;width:16px">
+											<svg focusable="false" viewBox="0 0 24 24">
+												<path fill="#34a853" d="M10 2v2a6 6 0 0 1 6 6h2a8 8 0 0 0-8-8"></path><path fill="#ea4335" d="M10 4V2a8 8 0 0 0-8 8h2c0-3.3 2.7-6 6-6"></path><path fill="#fbbc04" d="M4 10H2a8 8 0 0 0 8 8v-2c-3.3 0-6-2.69-6-6"></path><path fill="#4285f4" d="M22 20.59l-5.69-5.69A7.96 7.96 0 0 0 18 10h-2a6 6 0 0 1-6 6v2c1.85 0 3.52-.64 4.88-1.68l5.69 5.69L22 20.59"></path>
+											</svg>
+										</span>All
+										<div class="nav-select"></div>
+									</div>
+
+									<div class="the-other-navs">
+										<a class="other-navs">
+											<span class="other-nav-svg" style="height:16px;width:16px">
+												<svg focusable="false" viewBox="0 0 24 24">
+													<path d="M12 11h6v2h-6v-2zm-6 6h12v-2H6v2zm0-4h4V7H6v6zm16-7.22v12.44c0 1.54-1.34 2.78-3 2.78H5c-1.64 0-3-1.25-3-2.78V5.78C2 4.26 3.36 3 5 3h14c1.64 0 3 1.25 3 2.78zM19.99 12V5.78c0-.42-.46-.78-1-.78H5c-.54 0-1 .36-1 .78v12.44c0 .42.46.78 1 .78h14c.54 0 1-.36 1-.78V12zM12 9h6V7h-6v2"></path>
+												</svg>
+											</span>News
+										</a>
+									</div>
+
+									<div class="the-other-navs">
+										<a class="other-navs">
+											<span class="other-nav-svg" style="height:16px;width:16px">
+												<svg focusable="false" viewBox="0 0 24 24">
+													<path d="M14 13l4 5H6l4-4 1.79 1.78L14 13zm-6.01-2.99A2 2 0 0 0 8 6a2 2 0 0 0-.01 4.01zM22 5v14a3 3 0 0 1-3 2.99H5c-1.64 0-3-1.36-3-3V5c0-1.64 1.36-3 3-3h14c1.65 0 3 1.36 3 3zm-2.01 0a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h7v-.01h7a1 1 0 0 0 1-1V5"></path>
+												</svg>
+											</span>Images
+										</a>
+									</div>
+
+									<div class="the-other-navs">
+										<a class="other-navs">
+											<span class="other-nav-svg" style="height:16px;width:16px">
+												<svg focusable="false" viewBox="0 0 24 24">
+													<path d="M10 16.5l6-4.5-6-4.5v9zM5 20h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1zm14.5 2H5a3 3 0 0 1-3-3V4.4A2.4 2.4 0 0 1 4.4 2h15.2A2.4 2.4 0 0 1 22 4.4v15.1a2.5 2.5 0 0 1-2.5 2.5"></path>
+												</svg>
+											</span>Videos
+										</a>
+									</div>
+
+										<span class="more-button"> 
+											<div class="more-button-inner">
+												<div class="more-button-again">
+													<span class="more-button-svg" style="height:16px;line-height:16px;width:16px">
+														<svg viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+														</svg>
+													</span>More
+												</div>
+											</div>
+										</span>
+
+								</div>
+							</div>
+
+							<div>
+								<div class="settings">
+									<div class="settings-inner">
+										<a class="setting-link">Settings</a>
+									</div>
+								</div>
+								
+								<div class="settings">
+									<div class="settings-inner">
+										<a class="setting-link">Tools</a>
+									</div>
+								</div>
+
+						</div>
+					</div>
+				</div>	</div>
+			<div class="appbar" id="appbar">
+				<div id="extabar">
+					<div style="position:relative">
+						<div class="inner-appbar">
+							<div class="more-appbar">
+								<div id="result-stats">5 results
+									<nobr id="load-time"></nobr>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+
+		<div class="search-result-section">
+			<div class="search-result-container">
+				<div class="search-section">
+					<div class="search-again">
+						<div class="oml-again">
+							<div class="links">	
+
+								<div class="links-section">
+									<div class="upper-link">
+										<a>
+											<br>
+											<h3 class="upper-link-title">Googlepedia - <em style="font-weight:normal;"></em></h3>
+											<div class="upper-link-link">
+												<cite class="upper-link-link">https://www.wikipedia.org
+													<span class="parent"> › googlepedia › <em style="font-weight:normal;"></em></span>
+												</cite>
+											</div>
+										</a>
+									</div>
+
+									<div class="downer-link">
+										<div class="downer-section">
+											<span id="q">The B. in "<em></em>" stands for Benoît B. Mandelbrot, which is funny because the B. in "<em id="q"></em>" stands for Benoît B. Mandelbrot, which is funny because the B...</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="links-section">
+									<div class="upper-link">
+										<a>
+											<br>
+											<h3 class="upper-link-title">Googlepedia - <em style="font-weight:normal;"></em></h3>
+											<div class="upper-link-link">
+												<cite class="upper-link-link">https://www.wikipedia.org
+													<span class="parent"> › googlepedia › <em style="font-weight:normal;"></em></span>
+												</cite>
+											</div>
+										</a>
+									</div>
+
+									<div class="downer-link">
+										<div class="downer-section">
+											<span id="q">The B. in "<em></em>" stands for Benoît B. Mandelbrot, which is funny because the B. in "<em id="q"></em>" stands for Benoît B. Mandelbrot, which is funny because the B...</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="links-section">
+									<div class="upper-link">
+										<a>
+											<br>
+											<h3 class="upper-link-title">Googlepedia - <em style="font-weight:normal;"></em></h3>
+											<div class="upper-link-link">
+												<cite class="upper-link-link">https://www.wikipedia.org
+													<span class="parent"> › googlepedia › <em style="font-weight:normal;"></em></span>
+												</cite>
+											</div>
+										</a>
+									</div>
+
+									<div class="downer-link">
+										<div class="downer-section">
+											<span id="q">The B. in "<em></em>" stands for Benoît B. Mandelbrot, which is funny because the B. in "<em id="q"></em>" stands for Benoît B. Mandelbrot, which is funny because the B...</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="links-section">
+									<div class="upper-link">
+										<a>
+											<br>
+											<h3 class="upper-link-title">Googlepedia - <em style="font-weight:normal;"></em></h3>
+											<div class="upper-link-link">
+												<cite class="upper-link-link">https://www.wikipedia.org
+													<span class="parent"> › googlepedia › <em style="font-weight:normal;"></em></span>
+												</cite>
+											</div>
+										</a>
+									</div>
+
+									<div class="downer-link">
+										<div class="downer-section">
+											<span id="q">The B. in "<em></em>" stands for Benoît B. Mandelbrot, which is funny because the B. in "<em id="q"></em>" stands for Benoît B. Mandelbrot, which is funny because the B...</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="links-section">
+									<div class="upper-link">
+										<a>
+											<br>
+											<h3 class="upper-link-title">Googlepedia - <em style="font-weight:normal;"></em></h3>
+											<div class="upper-link-link">
+												<cite class="upper-link-link">https://www.wikipedia.org
+													<span class="parent"> › googlepedia › <em style="font-weight:normal;"></em></span>
+												</cite>
+											</div>
+										</a>
+									</div>
+
+									<div class="downer-link">
+										<div class="downer-section">
+											<span id="q">The B. in "<em></em>" stands for Benoît B. Mandelbrot, which is funny because the B. in "<em id="q"></em>" stands for Benoît B. Mandelbrot, which is funny because the B...</span>
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>	
+
+						</div>
+
+					</div>
+
+				</div>
+<div id="footcnt">
+			<div style="height:102px;padding-top: 12px;">
+				<div class="footer">
+					<div class="footer-upper-text">
+						<div class="footer-upper-text-2">
+							<div class="footer-upper-3" style="visibility: visible;">
+								<span class="ball"></span>
+								<span class="location">Nowhere</span>
+								<span> - </span>
+								<span>From your Internet address</span>
+								<a id="BHDErf" style="display: none;"></a>
+								<span> - </span>
+								<a style="color: #70757a;cursor:pointer;">Use precise location</a>
+								<span> - </span>
+								<a style="color: #70757a;" href="https://support.google.com/websearch?p=ws_settings_location&">Learn more</a>
+
+						</div>
+
+					<div class="fbar">
+						<span class="bottom-links">
+							<span style="white-space: nowrap;">
+								<a class="JWaTvb Fx4vi" href="https://support.google.com/websearch/">Help</a>
+								<a class="Fx4vi">Send feedback</a>
+								<a class="JWaTvb Fx4vi" href="https://policies.google.com/privacy?hl=en&amp;">Privacy</a>
+								<a class="JWaTvb Fx4vi" href="https://policies.google.com/terms?hl=en&amp;">Terms</a>
+							</span>
+						</span>
+					</div>
+						
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+			</div>	</div>
+
+
+</div>
+
+
+</body>
+</html>
